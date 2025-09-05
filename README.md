@@ -1,3 +1,53 @@
-Η παρούσα εργασία αφορά την ανακατασκευή ψηφίων από το σύνολο δεδομένων MNIST χρησιμοποιώντας τρεις διαφορετικές προσεγγίσεις: έναν κλασικό autoencoder, ανακατασκευή μέσω PCA (Principal Component Analysis) και έναν autoencoder για την πρόβλεψη του επόμενου ψηφίου. Η υλοποίηση περιλαμβάνει τέσσερα Python scripts: το Classic_Autoencoder.py, το οποίο εκπαιδεύει έναν autoencoder για την ανακατασκευή των αρχικών εικόνων, το PCA_Reconstruction.py, που υλοποιεί την ανακατασκευή μέσω PCA, το Next_Digit_Autoencoder.py, που προβλέπει το επόμενο ψηφίο, και το Classifier.py, το οποίο περιλαμβάνει έναν νευρωνικό ταξινομητή που αξιολογεί την ακρίβεια των ανακατασκευασμένων ψηφίων. Για τη σωστή λειτουργία της υλοποίησης, είναι απαραίτητο να τρέξει πρώτα το Classifier.py ώστε να εκπαιδευτεί ο ταξινομητής και να αποθηκευτεί το εκπαιδευμένο μοντέλο, και στη συνέχεια τα υπόλοιπα scripts. Κάθε script περιέχει τη δική του υλοποίηση, από τη φόρτωση και επεξεργασία των δεδομένων μέχρι την αξιολόγηση της απόδοσης των μεθόδων. Η εργασία είναι οργανωμένη ώστε να επιτρέπει τη σύγκριση των προσεγγίσεων αυτών και την ανάλυση της αποτελεσματικότητάς τους σε διαφορετικά σενάρια. Επιπλέον, περιλαμβάνεται μια αναλυτική έκθεση αποτελεσμάτων, η οποία συνοψίζει την απόδοση κάθε μεθόδου, παρουσιάζει παραδείγματα σωστών και εσφαλμένων ανακατασκευών, και συγκρίνει τις προσεγγίσεις. Η έκθεση παρέχει σημαντικές πληροφορίες σχετικά με την αποτελεσματικότητα των μεθόδων και τις πιθανές εφαρμογές τους. Η εργασία είναι οργανωμένη ώστε να διευκολύνει τόσο την τεχνική αξιολόγηση όσο και την πλήρη τεκμηρίωση των αποτελεσμάτων.
+# 🔢 Digit Reconstruction with Autoencoders and PCA (MNIST)
 
-This project focuses on the reconstruction of digits from the MNIST dataset using three different approaches: a classic autoencoder, reconstruction through PCA (Principal Component Analysis), and an autoencoder designed to predict the next digit. The implementation includes four Python scripts: Classic_Autoencoder.py, which trains an autoencoder to reconstruct the original images, PCA_Reconstruction.py, which implements reconstruction using PCA, Next_Digit_Autoencoder.py, which predicts the next digit, and Classifier.py, which contains a neural network classifier to evaluate the accuracy of the reconstructed digits. To ensure proper functionality, Classifier.py must be executed first to train the classifier and save the trained model, followed by the other scripts. Each script includes its own implementation, from loading and preprocessing the data to evaluating the performance of the respective methods. The project is structured to facilitate the comparison of these approaches and analyze their effectiveness in various scenarios.Additionally, a detailed results report is included, summarizing the performance of each method, showcasing examples of correct and incorrect reconstructions, and comparing the approaches. This report provides insights into the effectiveness of the methods and their potential applications. The project is structured to facilitate both technical evaluation and comprehensive documentation of results.
+📚 University project for the course **Neural Networks – Deep Learning**.  
+
+This project focuses on the **reconstruction of digits from the MNIST dataset** using three different approaches:  
+1. A **classic autoencoder**  
+2. **Principal Component Analysis (PCA)**  
+3. An **autoencoder designed to predict the next digit**  
+
+---
+
+## ✨ Project Overview
+The implementation consists of four Python scripts:
+
+- **`Classic_Autoencoder.py`**  
+  Trains a classic autoencoder to reconstruct the original images.  
+
+- **`PCA_Reconstruction.py`**  
+  Implements reconstruction using Principal Component Analysis (PCA).  
+
+- **`Next_Digit_Autoencoder.py`**  
+  Uses an autoencoder to predict the next digit.  
+
+- **`Classifier.py`**  
+  Contains a neural network classifier to evaluate the accuracy of the reconstructed digits.  
+
+---
+
+## ⚙️ Usage Notes
+- **`Classifier.py` must be executed first** in order to:  
+  - Train the classifier  
+  - Save the trained model  
+- After that, the other scripts can be executed independently.  
+- Each script includes its own implementation, from **data loading and preprocessing** to **performance evaluation**.  
+
+---
+
+## 📊 Results and Report
+The project includes a **detailed results report**, which provides:  
+- Performance summary for each reconstruction method  
+- Examples of correct and incorrect reconstructions  
+- Comparative analysis of the three approaches  
+- Insights into the effectiveness of each method and their potential applications  
+
+---
+
+## 🧪 Purpose
+The project is organized to:  
+- Facilitate **comparison of reconstruction approaches**  
+- Support **technical evaluation**  
+- Provide **comprehensive documentation of results**  
+
+---
