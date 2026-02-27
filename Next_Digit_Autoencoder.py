@@ -204,31 +204,31 @@ def accuracy_per_category(test_labels, predictions):
     class_correct = []
     class_total = []
 
-    for idx in range(10):
+    for cls in range(10):
         class_correct.append(0)
         class_total.append(0)
 
-    for idx in range(len(test_labels)):
-        label = test_labels[idx].item()
+    for cls in range(len(test_labels)):
+        label = test_labels[cls].item()
         class_total[label] += 1
-        if predictions[idx].item() == label:
+        if predictions[cls].item() == label:
             class_correct[label] += 1
 
-    for idx in range(10):
-        if class_total[idx] > 0:
-            acc = 100 * class_correct[idx] / class_total[idx]
+    for cls in range(10):
+        if class_total[cls] > 0:
+            acc = 100 * class_correct[cls] / class_total[cls]
         else:
             acc = 0
-        if idx == 0:
+        if cls == 0:
             print(
                 f"Σωστές Ανασκευασμένες Εικόνες 9 -> 0 | "
-                f"Σωστά: {class_correct[idx]:<3} / {class_total[idx]:<3} | "
+                f"Σωστά: {class_correct[cls]:<3} / {class_total[cls]:<3} | "
                 f"Ακρίβεια: {acc:.2f}%"
             )
         else:
             print(
-                f"Σωστές Ανασκευασμένες Εικόνες {idx - 1} -> {idx} | "
-                f"Σωστά: {class_correct[idx]:<3} / {class_total[idx]:<3} | "
+                f"Σωστές Ανασκευασμένες Εικόνες {cls - 1} -> {cls} | "
+                f"Σωστά: {class_correct[cls]:<3} / {class_total[cls]:<3} | "
                 f"Ακρίβεια: {acc:.2f}%"
             )
 
