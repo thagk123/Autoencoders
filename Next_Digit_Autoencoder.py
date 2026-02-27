@@ -204,32 +204,32 @@ def accuracy_per_category(test_labels, predictions):
     class_correct = []
     class_total = []
 
-    for i in range(10):
+    for idx in range(10):
         class_correct.append(0)
         class_total.append(0)
 
-    for i in range(len(test_labels)):
-        label = test_labels[i].item()
+    for idx in range(len(test_labels)):
+        label = test_labels[idx].item()
         class_total[label] += 1
-        if predictions[i].item() == label:
+        if predictions[idx].item() == label:
             class_correct[label] += 1
 
-    for i in range(10):
-        if class_total[i] > 0:
-            accuracy = 100 * class_correct[i] / class_total[i]
+    for idx in range(10):
+        if class_total[idx] > 0:
+            acc = 100 * class_correct[idx] / class_total[idx]
         else:
-            accuracy = 0
-        if i == 0:
+            acc = 0
+        if idx == 0:
             print(
                 f"Σωστές Ανασκευασμένες Εικόνες 9 -> 0 | "
-                f"Σωστά: {class_correct[i]:<3} / {class_total[i]:<3} | "
-                f"Ακρίβεια: {accuracy:.2f}%"
+                f"Σωστά: {class_correct[idx]:<3} / {class_total[idx]:<3} | "
+                f"Ακρίβεια: {acc:.2f}%"
             )
         else:
             print(
-                f"Σωστές Ανασκευασμένες Εικόνες {i - 1} -> {i} | "
-                f"Σωστά: {class_correct[i]:<3} / {class_total[i]:<3} | "
-                f"Ακρίβεια: {accuracy:.2f}%"
+                f"Σωστές Ανασκευασμένες Εικόνες {idx - 1} -> {idx} | "
+                f"Σωστά: {class_correct[idx]:<3} / {class_total[idx]:<3} | "
+                f"Ακρίβεια: {acc:.2f}%"
             )
 
 accuracy_per_category(next_digit_test_targets, predicted)
