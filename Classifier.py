@@ -24,10 +24,10 @@ class Classifier(nn.Module):
 model = Classifier()
 
 # Συνάρτηση Αξιολόγησης με Accuracy και Confusion Matrix
-def evaluate_accuracy(model, data, targets, set_name, py_name):
-    model.eval()
+def evaluate_accuracy(clf_model, data, targets, set_name, py_name):
+    clf_model.eval()
     with torch.no_grad():
-        outputs = model(data)
+        outputs = clf_model(data)
         _, predicted = torch.max(outputs, 1)
         correct = (predicted == targets).sum().item()
     accuracy = 100 * correct / len(targets)
@@ -48,7 +48,9 @@ if __name__ == "__main__":
 
     # Τυποποίηση δεδομένων
     scaler = MinMaxScaler(feature_range=(0, 1))
-    train_dataset.data = torch.tensor(scaler.fit_transform(train_dataset.data.view(-1, 28 * 28))).float()
+    train_dataset.data = torch.tensor(
+        scaler.fit_transform(train_dataset.data.view(-1, 28 * 28))
+    ).float()
     test_dataset.data = torch.tensor(scaler.transform(test_dataset.data.view(-1, 28 * 28))).float()
 
     # Δημιουργία DataLoader
@@ -100,5 +102,9 @@ if __name__ == "__main__":
     torch.save(model.state_dict(), "classifier.pth")
 
     # Αξιολόγηση για Training και Test Set
-    train_predictions = evaluate_accuracy(model, train_dataset.data, train_dataset.targets, "Training Set", "Classifier")
-    test_predictions = evaluate_accuracy(model, test_dataset.data, test_dataset.targets, "Test Set", "Classifier")
+    train_predictions = evaluate_accuracy(
+        model, train_dataset.data, train_dataset.targets, "Training Set", "Classifier"
+    )
+    test_predictions = evaluate_accuracy(
+        model, test_dataset.data, test_dataset.targets, "Test Set", "Classifier"
+    )

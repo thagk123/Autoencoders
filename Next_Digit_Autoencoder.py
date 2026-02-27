@@ -61,7 +61,10 @@ next_digit_test_data = torch.cat(next_digit_test_data).view(-1, 784)
 next_digit_test_targets = torch.tensor(next_digit_test_targets)
 
 # Δημιουργία DataLoader
-train_dataset_tensor = TensorDataset(train_dataset.data, train_dataset.targets, next_digit_train_data, next_digit_train_targets)
+train_dataset_tensor = TensorDataset(
+    train_dataset.data, train_dataset.targets,
+    next_digit_train_data, next_digit_train_targets
+)
 train_loader = DataLoader(train_dataset_tensor, batch_size=256, shuffle=True)
 
 # Ορισμός Autoencoder
@@ -133,12 +136,18 @@ print(f"Χρόνος εκπαίδευσης: {train_end/60:.2f} λεπτά")
 # Ανακατασκευή των Εικόνων
 model_auto.eval()
 with torch.no_grad():
-  test_reconstructed = model_auto(test_dataset.data)
-  train_reconstructed = model_auto(train_dataset.data)
+    test_reconstructed = model_auto(test_dataset.data)
+    train_reconstructed = model_auto(train_dataset.data)
 
 # Αξιολόγηση Ανακατασκευασμένων Εικόνων με τον Classifier
-evaluate_accuracy(model, train_reconstructed, next_digit_train_targets, "Training Set", "Next_Digit_Autoencoder")
-predicted = evaluate_accuracy(model, test_reconstructed, next_digit_test_targets, "Test Set", "Next_Digit_Autoencoder")
+evaluate_accuracy(
+    model, train_reconstructed, next_digit_train_targets,
+    "Training Set", "Next_Digit_Autoencoder"
+)
+predicted = evaluate_accuracy(
+    model, test_reconstructed, next_digit_test_targets,
+    "Test Set", "Next_Digit_Autoencoder"
+)
 
 
 print("\n")
@@ -191,7 +200,7 @@ print("Το plot αποθηκεύτηκε στο 'Next_Digit_Autoencoder.png'.")
 
 
 # Υπολογισμός ακρίβειας ανά κατηγορία
-def accuracy_per_category(test_labels, predicted):
+def accuracy_per_category(test_labels, predictions):
     class_correct = []
     class_total = []
 
@@ -202,18 +211,26 @@ def accuracy_per_category(test_labels, predicted):
     for i in range(len(test_labels)):
         label = test_labels[i].item()
         class_total[label] += 1
-        if predicted[i].item() == label:
+        if predictions[i].item() == label:
             class_correct[label] += 1
 
     for i in range(10):
         if class_total[i] > 0:
-          accuracy = 100 * class_correct[i] / class_total[i]
+            accuracy = 100 * class_correct[i] / class_total[i]
         else:
             accuracy = 0
         if i == 0:
-            print(f"Σωστές Ανασκευασμένες Εικόνες 9 -> 0 | Σωστά: {class_correct[i]:<3} / {class_total[i]:<3} | Ακρίβεια: {accuracy:.2f}%")
+            print(
+                f"Σωστές Ανασκευασμένες Εικόνες 9 -> 0 | "
+                f"Σωστά: {class_correct[i]:<3} / {class_total[i]:<3} | "
+                f"Ακρίβεια: {accuracy:.2f}%"
+            )
         else:
-            print(f"Σωστές Ανασκευασμένες Εικόνες {i - 1} -> {i} | Σωστά: {class_correct[i]:<3} / {class_total[i]:<3} | Ακρίβεια: {accuracy:.2f}%")
+            print(
+                f"Σωστές Ανασκευασμένες Εικόνες {i - 1} -> {i} | "
+                f"Σωστά: {class_correct[i]:<3} / {class_total[i]:<3} | "
+                f"Ακρίβεια: {accuracy:.2f}%"
+            )
 
 accuracy_per_category(next_digit_test_targets, predicted)
 
